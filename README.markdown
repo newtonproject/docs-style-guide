@@ -342,6 +342,108 @@ When they are needed, use comments to explain **why** a particular piece of code
 Avoid block comments inline with code, as the code should be as self-documenting as possible. _Exception: This does not apply to those comments used to generate documentation._
 
 Avoid the use of C-style comments (`/* ... */`). Prefer the use of double- or triple-slash.
+variable:
+
+**Preferred**:
+```swift
+/// The absolute value of this integer.
+public var magnitude: BigUInt
+
+/// Encoded data
+public var data = Data()
+
+```
+**Not Preferred**:
+```swift
+//The absolute value of this integer.
+public var magnitude: BigUInt
+
+///Encoded data
+public var data = Data()
+
+/* Encoded data */
+public var data = Data()
+
+```
+function:
+
+**Preferred**:
+```swift
+/// Determines if a mnemonic string is valid.
+///
+/// - Parameter string: mnemonic string
+/// - Returns: `true` if the string is valid; `false` otherwise.
+public static func isValid(_ string: String) -> Bool {
+      return mnemonic_check(string) != 0
+}
+
+/// Determines if a mnemonic string is valid.
+public static func isValid(_ string: String) -> Bool {
+      return mnemonic_check(string) != 0
+}
+ ```
+ 
+ **Not Preferred**:
+ ```swift
+ ///Determines if a mnemonic string is valid.
+ public static func isValid(_ string: String) -> Bool {
+     return mnemonic_check(string) != 0
+ }
+ 
+ public static func isValid(_ string: String) -> Bool {
+     ///Determines if a mnemonic string is valid.
+     return mnemonic_check(string) != 0
+ }
+ 
+ public static func isValid(_ string: String) -> Bool { ///Determines if a mnemonic string is valid.
+     return mnemonic_check(string) != 0
+ }
+  ```
+ 
+class:
+**Preferred**:
+```swift
+/// Encodes fields according to Ethereum's Application Binary Interface Specification
+///
+/// - SeeAlso: https://solidity.readthedocs.io/en/develop/abi-spec.html
+public final class ABIEncoder {
+     ...
+}
+
+/// Represents a response to a `MoyaProvider.request`.
+public final class Response: CustomDebugStringConvertible, Equatable {
+
+    /// The status code of the response.
+    public let statusCode: Int
+
+    /// The response data.
+    public let data: Data
+}
+
+/// Signs this transaction by filling in the `v`, `r`, and `s` values.
+///
+/// - Parameters:
+///   - chainID: chain identifier, defaults to `1`
+///   - hashSigner: function to use for signing the hash
+public mutating func sign(chainID: Int = 1, hashSigner: (Data) throws -> Data) rethrows {
+     ...
+}
+
+```
+ **Not Preferred**:
+ ```swift
+public final class ABIEncoder {
+     ...
+}
+
+public final class Response: CustomDebugStringConvertible, Equatable {
+    /// Represents a response to a `MoyaProvider.request`.
+
+    public let statusCode: Int
+
+    public let data: Data
+}
+```
 
 ## Classes and Structures
 
