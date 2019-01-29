@@ -371,7 +371,8 @@ function:
 ```swift
 /// Determines if a mnemonic string is valid.
 ///
-/// - Parameter string: mnemonic string
+/// - Parameters:
+/// - string: mnemonic string
 /// - Returns: `true` if the string is valid; `false` otherwise.
 public static func isValid(_ string: String) -> Bool {
       return mnemonic_check(string) != 0
@@ -425,6 +426,7 @@ public final class Response: CustomDebugStringConvertible, Equatable {
 /// - Parameters:
 ///   - chainID: chain identifier, defaults to `1`
 ///   - hashSigner: function to use for signing the hash
+///   - Returns: void
 public mutating func sign(chainID: Int = 1, hashSigner: (Data) throws -> Data) rethrows {
      ...
 }
